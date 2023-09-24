@@ -1,0 +1,40 @@
+-- Skrypt jest pisany dla SQLite
+
+CREATE TABLE Sportsmen (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    lastName TEXT NOT NULL,
+    goal TEXT NOT NULL
+);
+
+CREATE TABLE WeeklyDietDescriptions (
+    description_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sportsman_id TEXT NOT NULL,
+    description TEXT NOT NULL,
+    FOREIGN KEY(sportsman_id) REFERENCES Sportsmen(id)
+);
+
+CREATE TABLE WeeklyTrainingDescriptions (
+    description_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sportsman_id TEXT NOT NULL,
+    description TEXT NOT NULL,
+    FOREIGN KEY(sportsman_id) REFERENCES Sportsmen(id)
+);
+
+CREATE TABLE Meals (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    description TEXT NOT NULL,
+    type TEXT NOT NULL,
+    calories INTEGER NOT NULL,
+    sportsman_id INTEGER,
+    FOREIGN KEY(sportsman_id) REFERENCES Sportsmen(id)
+);
+
+CREATE TABLE Trainings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    description TEXT NOT NULL,
+    type TEXT NOT NULL,
+    duration INTEGER NOT NULL,
+    sportsman_id INTEGER,
+    FOREIGN KEY(sportsman_id) REFERENCES Sportsmen(id)
+);
